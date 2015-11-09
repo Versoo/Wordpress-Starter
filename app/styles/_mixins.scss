@@ -1,0 +1,16 @@
+@mixin transition($transition) {
+  -webkit-transition: $transition;
+  -moz-transition: $transition;
+  -o-transition: $transition;
+  -ms-transition: $transition;
+  transition: $transition;
+}
+
+@mixin color-transit($color-transit){
+  background: $color-transit;
+  background: -webkit-linear-gradient(top, $color-transit);
+  background: -moz-linear-gradient(top, $color-transit);
+  background: -ms-linear-gradient(top, $color-transit);
+  background: -o-linear-gradient(top, $color-transit);
+  background: linear-gradient(to bottom, $color-transit);
+}
