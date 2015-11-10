@@ -38,16 +38,7 @@ gulp.task('scripts', function () {
         .pipe(gulp.dest('../assets/js'));
 });
 
-
-
-gulp.task('vendors_js', function () {
-    return gulp.src(paths.vendorJs)
-        .pipe($.uglify())
-        .pipe(gulp.dest('../assets/js/vendor'));
-});
-
-
-gulp.task('watch', ['styles','scripts','vendors_js'], function () {
+gulp.task('watch', ['styles','scripts'], function () {
     gulp.watch('styles/**/*.scss', ['styles']);
     gulp.watch('javascripts/*.js', ['scripts']);
     gulp.watch('javascripts/**/*.js', ['scripts']);

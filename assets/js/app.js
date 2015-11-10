@@ -1,1 +1,1 @@
-"use strict";!function(e){e(document).ready(function(){console.log("Test")})}(jQuery);
+!function(n){"use strict";n(document).ready(function(){}),n(window).load(function(){}),n(window).scroll(function(){})}(jQuery);

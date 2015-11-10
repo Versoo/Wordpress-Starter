@@ -1,5 +1,5 @@
 {
-  "name": "wordpress-scss",
+  "name": "Wordpress-starter",
   "private": true,
   "dependencies": {
     "bootstrap-sass-official": "~3.3.1",

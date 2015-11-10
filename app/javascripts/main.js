@@ -1,9 +1,17 @@
 // Main Scripts
-'use strict';
-
 (function ($) {
+    'use strict';
+
     $(document).ready(function(){
-        // Scripts
-        console.log('Test');
+
     });
+
+    $(window).load(function() {
+
+    });
+
+    $(window).scroll(function(){
+
+    });
+
 })(jQuery);
