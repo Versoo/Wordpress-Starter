@@ -7,7 +7,7 @@
  */
 
 
-add_action( 'wp_enqueue_scripts', 'register_styles' );
+add_action( 'get_footer', 'register_styles' );
 
 function register_styles() {
     // Main CSS

@@ -11,7 +11,6 @@ var paths = {
         'bower_components/jquery/dist/jquery.min.js',
         'bower_components/modernizr/modernizr.js',
         'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.min.js',
-
     ]
 };
 
@@ -38,7 +37,17 @@ gulp.task('scripts', function () {
         .pipe(gulp.dest('../assets/js'));
 });
 
-gulp.task('watch', ['styles','scripts'], function () {
+
+
+gulp.task('vendors_js', function () {
+    return gulp.src(paths.vendorJs)
+        .pipe($.uglify())
+        .pipe(concat_global('vendor.js'))
+        .pipe(gulp.dest('../assets/js'));
+});
+
+
+gulp.task('watch', ['styles','scripts','vendors_js'], function () {
     gulp.watch('styles/**/*.scss', ['styles']);
     gulp.watch('javascripts/*.js', ['scripts']);
     gulp.watch('javascripts/**/*.js', ['scripts']);

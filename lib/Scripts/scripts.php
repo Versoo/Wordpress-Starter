@@ -7,19 +7,26 @@
  */
 
 add_action('wp_enqueue_scripts', 'register_scripts');
-
 function register_scripts() {
+    // Deregister WordPress jQuery
     wp_deregister_script('jquery');
-    // jQuery
-    wp_register_script('jquery', BOWER_URI.'/jquery/dist/jquery.min.js',null,null,false);
-    wp_enqueue_script('jquery');
-    // Modernizr
-    wp_register_script('modernizr',BOWER_URI.'/modernizr/modernizr.js',null,null,true);
-    wp_enqueue_script('modernizr');
-    // Boostrap
-    wp_register_script('boostrap-js',BOWER_URI.'/bootstrap-sass-official/assets/javascripts/bootstrap.min.js',null,null,true);
-    wp_enqueue_script('boostrap-js');
+
+    // Vendor.js - All Vendors
+    wp_register_script('vendor', ASSETS_URI.'/js/vendor.js',null,null,TRUE);
+    wp_enqueue_script('vendor');
     // App.js - All Page Scripts
-    wp_register_script('app',ASSETS_URI.'/js/app.js',null,null,true);
+    wp_register_script('app',ASSETS_URI.'/js/app.js',null,null,TRUE);
     wp_enqueue_script('app');
+}
+
+add_filter( 'clean_url', 'clean_scripts_url' , 11, 1 );
+
+function clean_scripts_url( $url )
+{
+    if ( FALSE === strpos( $url, '.js' ) )
+    { // not our file
+        return $url;
+    }
+    // Must be a ', not "!
+    return "$url' async='async";
 }
