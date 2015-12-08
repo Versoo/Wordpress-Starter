@@ -7,26 +7,31 @@
  */
 
 add_action('wp_enqueue_scripts', 'register_scripts');
-function register_scripts() {
-    // Deregister WordPress jQuery
-    wp_deregister_script('jquery');
+function register_scripts()
+{
+    if (!is_admin()) {
+        // Deregister WordPress jQuery
+        wp_deregister_script('jquery');
 
-    // Vendor.js - All Vendors
-    wp_register_script('vendor', ASSETS_URI.'/js/vendor.js',null,null,TRUE);
-    wp_enqueue_script('vendor');
-    // App.js - All Page Scripts
-    wp_register_script('app',ASSETS_URI.'/js/app.js',null,null,TRUE);
-    wp_enqueue_script('app');
+        // Vendor.js - All Vendors
+        wp_register_script('vendor', ASSETS_URI . '/js/vendor.js', null, null, TRUE);
+        wp_enqueue_script('vendor');
+        // App.js - All Page Scripts
+        wp_register_script('app', ASSETS_URI . '/js/app.js', null, null, TRUE);
+        wp_enqueue_script('app');
+    }
 }
 
-add_filter( 'clean_url', 'clean_scripts_url' , 11, 1 );
+add_filter('clean_url', 'clean_scripts_url', 11, 1);
 
-function clean_scripts_url( $url )
+function clean_scripts_url($url)
 {
-    if ( FALSE === strpos( $url, '.js' ) )
-    { // not our file
-        return $url;
+    if (!is_admin()) {
+        if (FALSE === strpos($url, '.js')) { // not our file
+            return $url;
+        }
+        // Must be a ', not "!
+        return "$url' async='async";
     }
-    // Must be a ', not "!
-    return "$url' async='async";
+    return $url;
 }
