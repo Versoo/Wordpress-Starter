@@ -1,6 +1,4 @@
 <?php
-
-
 add_action( 'tgmpa_register', 'required_plugins' );
 function required_plugins() {
     /*
@@ -8,6 +6,8 @@ function required_plugins() {
      * If the source is NOT from the .org repo, then source is also required.
      */
     $plugins = array(
+
+        // This is an example of how to include a plugin bundled with a theme.
         array(
             'name'               => 'Advanced Custom Fields Pro',
             'slug'               => 'advanced-custom-fields-pro',
@@ -15,7 +15,27 @@ function required_plugins() {
             'required'           => true,
             'force_activation'   => true,
             'force_deactivation' => false,
+            'is_automatic'       => true,
         ),
+        array(
+            'name'               => 'Html Minify',
+            'slug'               => 'html-minify-master',
+            'source'             => REQUIRED_PLUGINS_URI.'/html-minify.zip',
+            'required'           => true,
+            'force_activation'   => true,
+            'force_deactivation' => false,
+            'is_automatic'       => true,
+        ),
+        array(
+            'name'               => 'Speed Booster Pack',
+            'slug'               => 'speed-booster-pack',
+            'source'             => REQUIRED_PLUGINS_URI.'/speed-booster-pack.2.7.zip',
+            'required'           => true,
+            'force_activation'   => true,
+            'force_deactivation' => false,
+            'is_automatic'       => true,
+        ),
+
     );
 
     $config = array(
