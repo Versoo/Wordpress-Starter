@@ -8,7 +8,7 @@
 
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
-add_action( 'get_footer', 'register_styles' );
+add_action( 'wp_enqueue_scripts', 'register_styles' );
 
 function register_styles() {
     // Deregister
