@@ -3,6 +3,7 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat-css');
 var concat_global = require('gulp-concat');
+var imageop = require('gulp-image-optimization');
 var $ = require('gulp-load-plugins')();
 var copy = require('gulp-copy');
 
@@ -37,6 +38,13 @@ gulp.task('scripts', function () {
         .pipe(gulp.dest('../assets/js'));
 });
 
+gulp.task('images', function(cb) {
+    gulp.src(['images/**/*.png','images/**/*.jpg','images/**/*.gif','images/**/*.jpeg']).pipe(imageop({
+        optimizationLevel: 5,
+        progressive: true,
+        interlaced: true
+    })).pipe(gulp.dest('../assets/images')).on('end', cb).on('error', cb);
+});
 
 
 gulp.task('vendors_js', function () {
@@ -47,8 +55,9 @@ gulp.task('vendors_js', function () {
 });
 
 
-gulp.task('watch', ['styles','scripts','vendors_js'], function () {
+gulp.task('watch', ['styles','images','scripts','vendors_js'], function () {
     gulp.watch('styles/**/*.scss', ['styles']);
+    gulp.watch('images/**/*', ['images'])
     gulp.watch('javascripts/*.js', ['scripts']);
     gulp.watch('javascripts/**/*.js', ['scripts']);
 });
